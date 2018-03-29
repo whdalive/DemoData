@@ -1,4 +1,4 @@
-package com.example.niyati.demodatafiles;
+package com.example.niyati.demodatafiles.SQLite;
 
 import android.provider.BaseColumns;
 

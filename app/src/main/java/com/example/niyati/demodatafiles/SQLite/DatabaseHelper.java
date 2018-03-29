@@ -1,11 +1,9 @@
-package com.example.niyati.demodatafiles;
+package com.example.niyati.demodatafiles.SQLite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import java.sql.SQLDataException;
 
 /**
  * Created by Niyati on 2018/3/27.

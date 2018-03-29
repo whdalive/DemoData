@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SQLiteActivity"/>
+        <activity android:name=".SQLite.SQLiteActivity"/>
+        <activity android:name=".File.FileActivity"/>
+        <activity android:name=".SharePreferences.SharePrefsActivity"/>
+        <activity android:name=".ContentProvider.GetInfoActivity"/>
     </application>
 
 </manifest>

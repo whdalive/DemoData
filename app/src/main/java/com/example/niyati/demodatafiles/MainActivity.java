@@ -5,6 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.niyati.demodatafiles.ContentProvider.GetInfoActivity;
+import com.example.niyati.demodatafiles.File.FileActivity;
+import com.example.niyati.demodatafiles.SQLite.SQLiteActivity;
+import com.example.niyati.demodatafiles.SharePreferences.SharePrefsActivity;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -17,6 +22,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,SQLiteActivity.class));
+            }
+        });
+        findViewById(R.id.use_file).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,FileActivity.class));
+            }
+        });
+        findViewById(R.id.use_prefs).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SharePrefsActivity.class));
+            }
+        });
+        findViewById(R.id.use_provider).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GetInfoActivity.class));
             }
         });
     }

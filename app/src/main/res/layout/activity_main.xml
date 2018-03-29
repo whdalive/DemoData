@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.niyati.demodatafiles.MainActivity">
 
 
@@ -11,6 +12,26 @@
         android:id="@+id/use_sqllite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Use SQLlite"/>
+
+    <Button
+        android:id="@+id/use_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Use File"/>
+    <Button
+        android:id="@+id/use_prefs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Use prefs"/>
+    <Button
+        android:id="@+id/use_provider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="use content provider"/>
 
 </LinearLayout>

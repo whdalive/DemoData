@@ -1,4 +1,4 @@
-package com.example.niyati.demodatafiles;
+package com.example.niyati.demodatafiles.SQLite;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,9 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
-import java.sql.SQLDataException;
+import com.example.niyati.demodatafiles.R;
 
 /**
  * Created by Niyati on 2018/3/27.
