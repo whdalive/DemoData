@@ -1,8 +1,11 @@
 package com.example.niyati.demodatafiles.ContentProvider;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -22,32 +25,69 @@ import com.example.niyati.demodatafiles.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Contact extends Fragment {
+public class Reader extends Fragment {
 
     ArrayAdapter<String> mAdapter;
     List<String> contactsList = new ArrayList<>();
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_contact,container,false);
+        View view = inflater.inflate(R.layout.fragment_contact,container,false);
         ListView contactView = view.findViewById(R.id.contact_view);
         mAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,contactsList);
         contactView.setAdapter(mAdapter);
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_CONTACTS},666);
-        }else {
-            readContacts();
+        switch (getArguments().getInt("key")){
+            case 1:
+                contactsList.clear();
+                mAdapter.notifyDataSetChanged();
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_CONTACTS},666);
+                }else {
+                    readContacts();
+                }
+                break;
+            case 2:
+                contactsList.clear();
+                mAdapter.notifyDataSetChanged();
+                readProvider();
+                break;
         }
 
         return view;
     }
 
+    private void readProvider() {
+
+        Uri uri_player = Uri.parse("content://com.example.niyati.myprovider/player");
+
+        ContentValues values = new ContentValues();
+        values.put("name","yaoming");
+
+        ContentResolver resolver = getActivity().getContentResolver();
+        resolver.insert(uri_player,values);
+
+        Cursor cursor = resolver.query(uri_player,new String[]{"_id","name"},null,null,null,null);
+        if (cursor!=null) {
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(0);
+                String name = cursor.getString(1);
+                contactsList.add(id + "\n" + name);
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+
+    }
+
     private void readContacts() {
+
         Cursor cursor = null;
         try {
+
             cursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,null);
             if (cursor!=null){
+
                 while (cursor.moveToNext()){
                     String displaynName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));

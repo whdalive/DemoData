@@ -2,7 +2,6 @@ package com.example.niyati.demodatafiles.ContentProvider;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -16,13 +15,23 @@ public class GetInfoActivity extends AppCompatActivity {
         findViewById(R.id.read_contact).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-
-                fragmentManager.beginTransaction().add(R.id.container,new Contact())
-                        .addToBackStack(null)
-                        .commit();
-
+                startFragment(1);
             }
         });
+        findViewById(R.id.read_provider).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startFragment(2);
+            }
+        });
+    }
+    private void startFragment(int type){
+        Bundle args = new Bundle();
+        args.putInt("key",type);
+        Reader reader = new Reader();
+        reader.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,reader)
+                .commit();
+
     }
 }

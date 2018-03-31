@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.niyati.demodatafiles">
-
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +20,9 @@
         <activity android:name=".File.FileActivity"/>
         <activity android:name=".SharePreferences.SharePrefsActivity"/>
         <activity android:name=".ContentProvider.GetInfoActivity"/>
+        <provider
+            android:authorities="com.example.niyati.myprovider"
+            android:name=".ContentProvider.MyProvider"/>
     </application>
 
 </manifest>
